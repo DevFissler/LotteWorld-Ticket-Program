@@ -12,16 +12,14 @@ const int PARK_AF4_ADULT = 45000; const int PARK_AF4_YOUTH = 40000; const int PA
 
 int totalPrice;
 float discountRate;
-
 printf("\n======티켓 발권 시스템v3.16 Developed by DevFissler======\n\n");
 printf("이용권의 종류를 선택하세요.\n");
-printf("%-10s\t%-10s\n", "1.종합 이용권", "2. 파크 이용권");
+printf("%10s\t%10s\n", "1.종합 이용권", "2. 파크 이용권");
 scanf("%d",&ticketAuth);
 
 printf("\n권종을 선택하세요.\n");
-printf("%-10s\t%-10s\n", "1.1Day ", "2. After4");
+printf("%10s\t%10s\n", "1.1Day ", "2. After4");
 scanf("%d",&ticketTime);
-
 
 if (ticketAuth <= 2 && ticketTime <= 2){ // 1,2 이외의 선택지 고를 시 진행 x 
 	
@@ -112,7 +110,7 @@ if (ticketAuth <= 2 && ticketTime <= 2){ // 1,2 이외의 선택지 고를 시 진행 x
 	}
 	
 
-printf("\n발권할  티켓  수를 입력하세요(최대 10매):   ");
+printf("\n발권할  티켓  수를 입력하세요:   ");
 scanf("%d",&ticketQuan);
 
 printf("\n우대사항을 선택하세요.\n");
@@ -152,6 +150,7 @@ else {
 totalPrice=(unitPrice*ticketQuan)-(unitPrice*discountRate)*2;
 }
 
+printf("%f\n",discountRate);
 printf("\n총 %d 장 발권, 가격은 %d 원 입니다\n\n",ticketQuan,totalPrice);
 printf("감사합니다.\n"); 
 } //birthday 오류 시 return 
