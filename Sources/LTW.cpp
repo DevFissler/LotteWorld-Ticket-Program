@@ -11,21 +11,23 @@ const int PARK_ALL_ADULT = 56000; const int PARK_ALL_YOUTH = 50000; const int PA
 const int PARK_AF4_ADULT = 45000; const int PARK_AF4_YOUTH = 40000; const int PARK_AF4_KIDS = 35000; const int PARK_AF4_BABY = 15000;
 
 int totalPrice;
-float discountRate;
+float discountRate=0;
 
-printf("\n======티켓 발권 시스템v3.16 Developed by DevFissler======\n\n");
-printf("이용권의 종류를 선택하세요.\n");
-printf("%-10s\t%-10s\n", "1.종합 이용권", "2. 파크 이용권");
+printf("\n\n티켓 발권 시스템v3.16 Developed by DevFissler\n\n");
+printf("\n===============이용권 종류===================\n");
+printf("\n%-10s\t%-10s\n", "1.종합 이용권", "2. 파크 이용권\n");
+printf("\n이용권의 종류를 선택하세요: ");
 scanf("%d",&ticketAuth);
 
-printf("\n권종을 선택하세요.\n");
-printf("%-10s\t%-10s\n", "1.1Day ", "2. After4");
+printf("\n================이용 시간====================\n");
+printf("\n%-10s\t%-10s\n", "1.1Day ", "2. After4\n");
+printf("\n이용 시간을 선택하세요:  ");
 scanf("%d",&ticketTime);
 
 
 if (ticketAuth <= 2 && ticketTime <= 2){ // 1,2 이외의 선택지 고를 시 진행 x 
-	
-	printf("\n주민등록번호를 앞 6자리를  입력하세요.\n");  //나이에 따른 요금 책정 부분 
+	printf("\n=============================================\n");
+	printf("\n주민등록번호를 앞 6자리를  입력하세요: ");  //나이에 따른 요금 책정 부분 
 	scanf("%d",&idNumber);
 	
 	int birthYear,birthDate,fullAge;
@@ -111,17 +113,18 @@ if (ticketAuth <= 2 && ticketTime <= 2){ // 1,2 이외의 선택지 고를 시 진행 x
 		}
 	}
 	
-
+printf("\n=============================================\n");
 printf("\n발권할  티켓  수를 입력하세요(최대 10매):   ");
 scanf("%d",&ticketQuan);
 
-printf("\n우대사항을 선택하세요.\n");
+printf("\n=================우대사항====================\n");
 printf("1. 없음(경로 우대는 자동처리)\n");
 printf("2. 장애인\n"); //동반 1인 50% 
 printf("3. 국가유공자\n"); //동반 1인 50% 
 printf("4. 휴가 장병\n"); // 종합만 동반 1인 49% 
 printf("5. 임산부\n");  // 종합만 본인만 50% 
 printf("6. 다둥이 행복카드\n"); // 가족 본인 30% 
+printf("\n우대사항을 선택하세요 : ");
 scanf("%d",&discountType);
 
 	switch (discountType){
@@ -145,15 +148,17 @@ scanf("%d",&discountType);
 		break;
 		}
 
-if (ticketQuan ==1){
-totalPrice=unitPrice*(1-discountRate);
-}
-else {
-totalPrice=(unitPrice*ticketQuan)-(unitPrice*discountRate)*2;
-}
-
+	if (ticketQuan ==1){
+	totalPrice=unitPrice*(1-discountRate);
+	}
+	else {
+	totalPrice=unitPrice*(ticketQuan-discountRate*2);//동반 할인 
+	}
+	
+printf("\n=============================================\n");
 printf("\n총 %d 장 발권, 가격은 %d 원 입니다\n\n",ticketQuan,totalPrice);
-printf("감사합니다.\n"); 
+printf("감사합니다.\n\n"); 
+printf("\n=============================================\n");
 } //birthday 오류 시 return 
 } //권종 설정 오류 시 return 
 } //반복 입력 가능케 무한 루프 
