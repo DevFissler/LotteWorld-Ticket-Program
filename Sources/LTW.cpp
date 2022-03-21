@@ -3,31 +3,31 @@ int main ()
 {
 for (;;)
 {
-int ticketAuth,ticketTime,ticketQuan,idNumber,discountType,unitPrice;
+int ticketAuth,ticketTime,ticketQuan,idNumber,discountType,unitPrice,totalPrice;
+float discountRate;
 
-const int ALL_ALL_ADULT = 59000; const int ALL_ALL_YOUTH = 52000; const int ALL_ALL_KIDS = 47000; const int ALL_ALL_BABY = 15000; // 3살 ~ 12 살 어린이 , 만 13세 ~ 만 18세 청소년, 만 65세 이상 어린이요금 
-const int ALL_AF4_ADULT = 48000; const int ALL_AF4_YOUTH = 42000; const int ALL_AF4_KIDS = 36000; const int ALL_AF4_BABY = 15000;
+const int ALL_ALL_ADULT  = 59000; const int ALL_ALL_YOUTH  = 52000; const int ALL_ALL_KIDS  = 47000; const int ALL_ALL_BABY  = 15000; // 3살 ~ 12 살 어린이 , 만 13세 ~ 만 18세 청소년, 만 65세 이상 어린이요금 
+const int ALL_AF4_ADULT  = 48000; const int ALL_AF4_YOUTH  = 42000; const int ALL_AF4_KIDS  = 36000; const int ALL_AF4_BABY  = 15000;
 const int PARK_ALL_ADULT = 56000; const int PARK_ALL_YOUTH = 50000; const int PARK_ALL_KIDS = 46000; const int PARK_ALL_BABY = 15000;
 const int PARK_AF4_ADULT = 45000; const int PARK_AF4_YOUTH = 40000; const int PARK_AF4_KIDS = 35000; const int PARK_AF4_BABY = 15000;
 
-int totalPrice;
-float discountRate=0;
-
+while (true){
 printf("\n\n티켓 발권 시스템v3.16 Developed by DevFissler\n\n");
-printf("\n===============이용권 종류===================\n");
-printf("\n%-10s\t%-10s\n", "1.종합 이용권", "2. 파크 이용권\n");
-printf("\n이용권의 종류를 선택하세요: ");
+printf("\n===================이용권 종류===================\n");
+printf("\n\t%-10s\t%-10s\n", "1.종합 이용권", "2. 파크 이용권\n");
+printf("\n\t[1] 이용권의 종류를 선택하세요: ");
 scanf("%d",&ticketAuth);
 
-printf("\n================이용 시간====================\n");
-printf("\n%-10s\t%-10s\n", "1.1Day ", "2. After4\n");
-printf("\n이용 시간을 선택하세요:  ");
+if (ticketAuth == 1 ||ticketAuth == 2 ){ // 1,2 이외의 선택지 고를 시 진행 x 
+printf("\n====================이용 시간====================\n");
+printf("\n\t%-10s\t%-10s\n", "1.1Day ", "2. After4\n");
+printf("\n\t[2] 이용 시간을 선택하세요:  ");
 scanf("%d",&ticketTime);
 
 
-if (ticketAuth <= 2 && ticketTime <= 2){ // 1,2 이외의 선택지 고를 시 진행 x 
-	printf("\n=============================================\n");
-	printf("\n주민등록번호를 앞 6자리를  입력하세요: ");  //나이에 따른 요금 책정 부분 
+if (ticketTime == 1 ||ticketTime == 2){ // 1,2 이외의 선택지 고를 시 진행 x 
+	printf("\n=================================================\n");
+	printf("\n\t[3] 주민등록번호를 앞 6자리를  입력하세요: ");  //나이에 따른 요금 책정 부분 
 	scanf("%d",&idNumber);
 	
 	int birthYear,birthDate,fullAge;
@@ -113,18 +113,18 @@ if (ticketAuth <= 2 && ticketTime <= 2){ // 1,2 이외의 선택지 고를 시 진행 x
 		}
 	}
 	
-printf("\n=============================================\n");
-printf("\n발권할  티켓  수를 입력하세요(최대 10매):   ");
+printf("\n=================================================\n");
+printf("\n\t[4] 발권할  티켓  수를 입력하세요(최대 10매):   ");
 scanf("%d",&ticketQuan);
 
-printf("\n=================우대사항====================\n");
-printf("1. 없음(경로 우대는 자동처리)\n");
-printf("2. 장애인\n"); //동반 1인 50% 
-printf("3. 국가유공자\n"); //동반 1인 50% 
-printf("4. 휴가 장병\n"); // 종합만 동반 1인 49% 
-printf("5. 임산부\n");  // 종합만 본인만 50% 
-printf("6. 다둥이 행복카드\n"); // 가족 본인 30% 
-printf("\n우대사항을 선택하세요 : ");
+printf("\n=====================우대사항====================\n");
+printf("\t1. 없음(경로 우대는 자동처리)\n");
+printf("\t2. 장애인\n"); //동반 1인 50% 
+printf("\t3. 국가유공자\n"); //동반 1인 50% 
+printf("\t4. 휴가 장병\n"); // 종합만 동반 1인 49% 
+printf("\t5. 임산부\n");  // 종합만 본인만 50% 
+printf("\t6. 다둥이 행복카드\n"); // 가족 본인 30% 
+printf("\n\t[5] 우대사항을 선택하세요 : ");
 scanf("%d",&discountType);
 
 	switch (discountType){
@@ -155,12 +155,17 @@ scanf("%d",&discountType);
 	totalPrice=unitPrice*(ticketQuan-discountRate*2);//동반 할인 
 	}
 	
-printf("\n=============================================\n");
-printf("\n총 %d 장 발권, 가격은 %d 원 입니다\n\n",ticketQuan,totalPrice);
-printf("감사합니다.\n\n"); 
-printf("\n=============================================\n");
-} //birthday 오류 시 return 
-} //권종 설정 오류 시 return 
+printf("\n=================================================\n");
+printf("\n\t총 %d 장 발권, 가격은 %d 원 입니다\n\n",ticketQuan,totalPrice);
+printf("\n\t감사합니다.\n\n"); 
+printf("\n=================================================\n");
+} //birthday 오류 시 return 복 
+} //이용권 시간 설정  오류 시 return 
+} //이용권 종류 설정 오류 시 return 
+printf("\n=================================================\n");
+printf("\n\t잘못된 입력입니다! 다시 입력해주세요.\n");
+printf("\n=================================================\n");
+} //while true 로 잘못된 데이터 입력 시 반복 
 } //반복 입력 가능케 무한 루프 
 return 0;
 }
