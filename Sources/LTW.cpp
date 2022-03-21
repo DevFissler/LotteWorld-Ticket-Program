@@ -2,7 +2,7 @@
 int main ()
 {
 for (;;){
-int ticketAuth,ticketTime,idNumber,ticketQuan,discountType,unitPrice,totalPrice;
+int ticketAuth,ticketTime,idNumber,ticketQuan,discountType,unitPrice,totalPrice,contiChoice;
 float discountRate;
 
 const int ALL_ALL_ADULT  = 59000; const int ALL_ALL_YOUTH  = 52000; const int ALL_ALL_KIDS  = 47000; const int ALL_ALL_BABY  = 15000; // 3살 ~ 12 살 어린이 , 만 13세 ~ 만 18세 청소년, 만 65세 이상 어린이요금 
@@ -41,12 +41,12 @@ do{
 printf("\n=============================================================\n");
 printf("\n\t[3] 주민등록번호를 앞 6자리를  입력하세요: ");  
 scanf("%d",&idNumber);
-	if ( idNumber%10000<=1231 && idNumber%100<=31 && idNumber <= 999999 )
+	if ( idNumber%10000<=1231 && idNumber%100<=31 && idNumber <= 999999 && idNumber >=100000 )
 		continue;
 	printf("\n=============================================================\n");
 	printf("\n\t잘못된 입력입니다! 다시 입력해 주세요.\n");
 	printf("\n=============================================================\n");
-} while ( !( idNumber%10000<=1231 && idNumber%100<=31 && idNumber <= 999999) );
+} while ( !( idNumber%10000<=1231 && idNumber%100<=31 && idNumber <= 999999 && idNumber >= 100000) );
 
 do{
 printf("\n=============================================================\n");
@@ -183,30 +183,33 @@ else {
 	}		
 	
 // 계산 부 ( 단위가격* 할인율* 발권매수) 
-
 if ( discountType <5 ) {
 	if (ticketQuan == 1){
-		totalPrice=unitPrice*(1-discountRate);
+		totalPrice=unitPrice-unitPrice*discountRate;
 		}
 	else {
-		totalPrice=unitPrice*(ticketQuan-discountRate*2);//동반 할인 
+		totalPrice=unitPrice*ticketQuan-unitPrice*discountRate*2;//동반 할인 
 		}
 	}
 else {
-	totalPrice=unitPrice*ticketQuan-unitPrice*discountRate;
+	if (ticketAuth = 1) {
+		totalPrice=unitPrice*ticketQuan-unitPrice*discountRate;
 	}
+	else
+		totalPrice=unitPrice*ticketQuan;
+}
+
+
 	
 printf("\n=============================================================\n");
 printf("\n\t총 %d 장 발권, 가격은 %d 원 입니다\n\n",ticketQuan,totalPrice);
 
-int contibreak;
-
 printf("\n=============================================================\n");
 printf("\n\t%-10s\t%-10s\n", "1. 계속 발권", "2. 발권 종료\n");
 printf("\n\t계속 발권 하시겠습니까? : "); 
-scanf("%d",&contibreak);
+scanf("%d",&contiChoice);
 
-if (contibreak == 2){
+if (contiChoice == 2){
 	printf("\n=============================================================\n");
 	printf("\n\t\t이용해주셔서 감사합니다.\n");
 	printf("\n=============================================================\n");
