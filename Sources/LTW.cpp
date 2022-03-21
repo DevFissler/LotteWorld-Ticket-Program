@@ -41,12 +41,12 @@ do{
 printf("\n=============================================================\n");
 printf("\n\t[3] 주민등록번호를 앞 6자리를  입력하세요: ");  
 scanf("%d",&idNumber);
-	if ( idNumber%10000<=1231 && idNumber%100<=31 && idNumber <= 999999 && idNumber >=100000 )
+	if ( idNumber%10000<=1231 && idNumber%10000>= 101 && idNumber%100<=31 && idNumber%100 >=1 && idNumber <= 999999 && idNumber >=101 ) // 생년월일 가능범위 설정 
 		continue;
 	printf("\n=============================================================\n");
 	printf("\n\t잘못된 입력입니다! 다시 입력해 주세요.\n");
 	printf("\n=============================================================\n");
-} while ( !( idNumber%10000<=1231 && idNumber%100<=31 && idNumber <= 999999 && idNumber >= 100000) );
+} while (!( idNumber%10000<=1231 && idNumber%10000>= 101 && idNumber%100<=31 && idNumber%100 >=1 && idNumber <= 999999 && idNumber >=101));
 
 do{
 printf("\n=============================================================\n");
@@ -57,7 +57,7 @@ scanf("%d",&ticketQuan);
 	printf("\n=============================================================\n");
 	printf("\n\t잘못된 입력입니다! 다시 입력해 주세요.\n");
 	printf("\n=============================================================\n");
-} while ( !(ticketQuan <= 10));
+} while (!(ticketQuan <= 10));
 
 do{
 printf("\n===========================우대사항==========================\n");
@@ -192,18 +192,37 @@ if ( discountType <5 ) {
 		}
 	}
 else {
-	if (ticketAuth = 1) {
+	if (ticketAuth == 1) {
 		totalPrice=unitPrice*ticketQuan-unitPrice*discountRate;
 	}
 	else
 		totalPrice=unitPrice*ticketQuan;
 }
-
-
 	
 printf("\n=============================================================\n");
-printf("\n\t총 %d 장 발권, 가격은 %d 원 입니다\n\n",ticketQuan,totalPrice);
+printf("\n\t나이 : 만 %d세\t/ 구분 : ",fullAge); 
+if (fullAge >= 65){
+	printf("경로");
+ }
+else if(fullAge>=19 && fullAge<65){
+	printf("일반");
+ }
+else if (fullAge>=13 && fullAge<19){
+	printf("청소년");
+ }
+else if (fullAge>=3 && fullAge<13){
+	printf("어린이"); 
+ }
+else {
+	printf("유아"); 
+ }
+ 
+if (idNumber%10000 == preDate){
+	totalPrice=totalPrice-unitPrice*0.5;
+	printf("\n\n\t생일할인 대상자입니다.");
+ }
 
+printf("\n\n\t총 %d 장 발권, 가격은 %d 원 입니다.\n",ticketQuan,totalPrice);
 printf("\n=============================================================\n");
 printf("\n\t%-10s\t%-10s\n", "1. 계속 발권", "2. 발권 종료\n");
 printf("\n\t계속 발권 하시겠습니까? : "); 
