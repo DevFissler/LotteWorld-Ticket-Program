@@ -3,7 +3,7 @@ int main ()
 {
 	
 int row = 0;
-int reportArray[50][6] = {0};
+int reportArray[50000][6] = {0};
 
 for (;;){
 int ticketAuth,ticketTime,idNumber,ticketQuan,discountType,unitPrice,totalPrice,contiChoice;
@@ -81,6 +81,7 @@ scanf("%d",&discountType);
 	printf("\n\t\t\t잘못된 입력입니다! 다시 입력해 주세요.\n");
 	printf("\n============================================================================================\n");
 } while ( ! (discountType <=6));
+
 reportArray[row][3] = discountType;
 
 switch (discountType){
@@ -252,13 +253,15 @@ else {
 		printf("\n");
 	}
 
-int sum = 0;
+int sumIncome = 0;
+int sumPeople = 0;
 	
 	for (int i=0;i<=row;i++){
-		sum += reportArray[i][5];
+		sumPeople += reportArray[i][2];
+		sumIncome += reportArray[i][5];
 	}
 	
-printf("\n================================================================== 총 매출 : %d 원 =====\n",sum);
+printf("\n========================================== 1일 총 입장 인원: %d 명 / 총 매출 : %d 원 =====\n",sumPeople,sumIncome);
 printf("\n\t\t\t이용해주셔서 감사합니다!\n");
 printf("\n============================================================================================\n");
 return 0;
