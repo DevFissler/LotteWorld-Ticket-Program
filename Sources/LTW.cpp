@@ -119,7 +119,7 @@ else {
  	fullAge=preYear-birthYear-1;
 	}
 
-// 연령구분 과 이용권 종류에 따라 단위가격 설정 
+// 연령구분 과 이용권 종류에 따라 단위가격(unitPrice) 설정 
 	
 if (ticketAuth ==1){
 	if (ticketTime ==1){
@@ -222,7 +222,7 @@ if (idNumber%10000 == preDate){
 	printf("\n\n\t생일할인 대상자입니다.");
  }
 
-printf("\n\n\t총 %d 장 발권, 가격은 %d 원 입니다.\n",ticketQuan,totalPrice);
+printf("\n\n\t총 %d 장 발권, 입장료 총액은 %d 원 입니다.\n",ticketQuan,totalPrice);
 printf("\n=============================================================\n");
 printf("\n\t%-10s\t%-10s\n", "1. 계속 발권", "2. 발권 종료\n");
 printf("\n\t계속 발권 하시겠습니까? : "); 
