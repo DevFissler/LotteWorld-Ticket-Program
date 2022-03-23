@@ -31,6 +31,23 @@ int main ()
 		printf("%10d\t%10d\t%10d\t%10d\t%10d\t%10d\n",date[index],ticketAuth[index],ticketTime[index],ticketQuan[index],discountType[index],totalPrice[index]);
 	}
 	printf("\n==========================================================================================\n");
+	printf("\n====================================== 일자  별 판매 현황 ================================\n\n");
+	
+	int dateIncome[5000]= {0,};
+	
+	for (int dateIndex = 101; dateIndex <= 1231; dateIndex++){
+		for (int index = 0; index <= 5000 ; index++){
+			if (dateIndex == date[index]){
+			dateIncome[dateIndex] += totalPrice[index];
+			}
+		}	
+	}
+	
+	for (int i= 1; i<=5000; i++ ){
+		if (dateIncome[i] >0)
+		printf("\t\t\t\t%5d 월%5.2d 일:%10d 원\n",i/100,i%100,dateIncome[i]);
+	}
+
 	printf("\n================================ 이용권 시간 별 판매 현황 ================================\n");
 	
 	int countFull = 0 , countAF4 = 0, incomeFull = 0, incomeAF4 = 0;
@@ -45,8 +62,8 @@ int main ()
 			incomeAF4 += totalPrice[index];
 		}
 	}
-	printf("\n1 Day 이용권: 총 %d매\t / 매출 %d원\n",countFull,incomeFull);
-	printf("\nAfter 4 이용권: 총 %d매\t / 매출 %d원\n",countAF4,incomeAF4);
+	printf("\n\t\t\t\t1 Day 이용권: 총 %d매\t / 매출 %d원\n",countFull,incomeFull);
+	printf("\n\t\t\t\tAfter 4 이용권: 총 %d매\t / 매출 %d원\n",countAF4,incomeAF4);
 	
 	printf("\n================================ 이용권 종류 별 판매 현황 ================================\n");
 	
@@ -62,8 +79,8 @@ int main ()
 			incomePark += totalPrice[index];
 		}
 	}
-	printf("\n종합 이용권: 총 %d매\t / 매출 %d원\n",countAll,incomeAll);
-	printf("\n파크 이용권: 총 %d매\t / 매출 %d원\n",countPark,incomePark);
+	printf("\n\t\t\t\t종합 이용권: 총 %d매\t / 매출 %d원\n",countAll,incomeAll);
+	printf("\n\t\t\t\t파크 이용권: 총 %d매\t / 매출 %d원\n",countPark,incomePark);
 	
 	printf("\n============================= 우대 사항 분류 별 판매 현황 ================================\n");
 	
@@ -92,22 +109,6 @@ int main ()
 	printf("\n%10s\t%10s\t%10s\t%10s\t%10s\t%10s\n","없음","장애인","국가유공자","휴가장병","임산부","다둥이");
 	printf("\n%10d\t%10d\t%10d\t%10d\t%10d\t%10d\n",countNo,countDis,countHonor,countVaca,countPreg,countMulti);
 	
-	printf("\n====================================== 일자  별 판매 현황 ================================\n\n");
-	
-	int dateIncome[1500]= {0,};
-	
-	for (int dateIndex = 101; dateIndex <= 1231; dateIndex++){
-		for (int index = 0; index <= 1500 ; index++){
-			if (dateIndex == date[index]){
-			dateIncome[dateIndex] += totalPrice[index];
-			}
-		}	
-	}
-	
-	for (int i= 1; i<=1231; i++ ){
-		if (dateIncome[i] >0)
-		printf("\t\t\t%5d 월%5.2d 일\t:\t%10d 원\n",i/100,i%100,dateIncome[i]);
-	}
 
 	printf("\n==========================================================================================\n");
 	printf("\n\t\t\t\t이용해주셔서 감사합니다!\n");
