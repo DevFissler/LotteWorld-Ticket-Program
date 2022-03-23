@@ -92,23 +92,21 @@ int main ()
 	printf("\n%10s\t%10s\t%10s\t%10s\t%10s\t%10s\n","없음","장애인","국가유공자","휴가장병","임산부","다둥이");
 	printf("\n%10d\t%10d\t%10d\t%10d\t%10d\t%10d\n",countNo,countDis,countHonor,countVaca,countPreg,countMulti);
 	
-	printf("\n====================================== 일자  별 판매 현황 ================================\n");
+	printf("\n====================================== 일자  별 판매 현황 ================================\n\n");
 	
-	int dateIndex = 0;
-	int dateEarning = 0;
-	int dateIncome[dateIndex]= {0};
+	int dateIncome[1500]= {0,};
 	
-	for (int dateIndex = 0; dateIndex <= 50; dateIndex++){
-		for (int index=0; index <row ; index++){
-			if (dateIndex = date[index]){
-			dateEarning += totalPrice[index];
+	for (int dateIndex = 101; dateIndex <= 1231; dateIndex++){
+		for (int index = 0; index <= 1500 ; index++){
+			if (dateIndex == date[index]){
+			dateIncome[dateIndex] += totalPrice[index];
 			}
-		dateIncome[dateIndex] = dateEarning;
-		}
+		}	
 	}
 	
-	for (int i= 0; i<row; i++ ){
-		printf("%d\n",dateIncome[i]);
+	for (int i= 1; i<=1231; i++ ){
+		if (dateIncome[i] >0)
+		printf("\t\t\t%5d 월%5.2d 일\t:\t%10d 원\n",i/100,i%100,dateIncome[i]);
 	}
 
 	printf("\n==========================================================================================\n");
