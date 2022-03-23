@@ -4,7 +4,9 @@ int main ()
 {	
 time_t t = time(NULL);
 struct tm tm = *localtime(&t);
+
 int todayDate = (tm.tm_year+1900)*10000 + (tm.tm_mon+1)*100 + tm.tm_mday;
+int todayTime = tm.tm_hour * 100 + tm.tm_min;
 
 int row = 0;
 int reportArray[50000][6] = {0};
@@ -14,7 +16,6 @@ const int ALL_ALL_ADULT  = 59000, ALL_ALL_YOUTH  = 52000, ALL_ALL_KIDS  = 47000,
 		  PARK_ALL_ADULT = 56000, PARK_ALL_YOUTH = 50000, PARK_ALL_KIDS = 46000, PARK_ALL_BABY = 15000,
 		  PARK_AF4_ADULT = 45000, PARK_AF4_YOUTH = 40000, PARK_AF4_KIDS = 35000, PARK_AF4_BABY = 15000; // 3차원 배열로? 
 
-
 	for (;;){
 	
 	int ticketAuth,ticketTime,idNumber,ticketQuan,discountType,unitPrice,totalPrice,contiChoice;
@@ -22,7 +23,7 @@ const int ALL_ALL_ADULT  = 59000, ALL_ALL_YOUTH  = 52000, ALL_ALL_KIDS  = 47000,
 	
 	printf("\n============================================================================================\n");
 	printf("\n\n\t\t\t티켓 발권 시스템v3.22 Developed by DevFissler\n\n");
-	printf("발권일 : %d\t\t",todayDate);printf("\t\t\t\t   발권 번호 : %d-%.4d",todayDate,row+1);
+	printf("발권일시: %d %d:%d\t",todayDate,tm.tm_hour,tm.tm_min);printf("\t\t\t\t   발권 번호 : %d-%.4d",todayDate,row+1);
 	
 		do{
 		printf("\n========================================= 이용권 종류 ======================================\n");
@@ -273,12 +274,12 @@ int sumPeople = 0;
 FILE *filepointer = fopen("report.csv","a");
 	
 	for (int i = 0 ;i <= row ;i++){
-		fprintf(filepointer,"%d,%d,%d,%d,%d,%d\n",todayDate,reportArray[i][0],reportArray[i][1],reportArray[i][2],reportArray[i][3],reportArray[i][5]);
+		fprintf(filepointer,"%d,%d,%d,%d,%d,%d,%d\n",todayDate,todayTime,reportArray[i][0],reportArray[i][1],reportArray[i][2],reportArray[i][3],reportArray[i][5]);
 		sumPeople += reportArray[i][2];
 		sumIncome += reportArray[i][5];
 	}
 	
-	fprintf(filepointer,"%s,%s,%s,%d,%s,%d\n","","","1일 총 입장 인원",sumPeople,"1일 총 매출 액",sumIncome);
+	fprintf(filepointer,"%s,%s,%s,%s,%d,%s,%d\n","","","","1일 총 입장 인원",sumPeople,"1일 총 매출 액",sumIncome);
 
 printf("\n========================================= 1일 총 입장 인원: %d 명 / 총 매출 : %d 원 =====\n",sumPeople,sumIncome);
 printf("\n============================================================================================\n");
